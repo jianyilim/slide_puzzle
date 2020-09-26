@@ -2,12 +2,12 @@
 // for details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
-import 'theme_plaster.dart';
-import 'theme_seattle.dart';
-import 'theme_simple.dart';
+import 'theme_paleolitik.dart';
+import 'theme_neolitik.dart';
+import 'theme_logam.dart';
 
 const themes = [
-  ThemeSimple(),
-  ThemeSeattle(),
-  ThemePlaster(),
+  ThemePaleolitik(),
+  ThemeNeolitik(),
+  ThemeLogam(),
 ];

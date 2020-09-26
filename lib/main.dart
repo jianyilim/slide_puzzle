@@ -17,7 +17,7 @@ class PuzzleApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => MaterialApp(
-        title: 'Slide Puzzle',
+        title: 'State of Sejarah',
         home: _PuzzleHome(rows, columns),
       );
 }
