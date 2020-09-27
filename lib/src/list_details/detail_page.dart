@@ -80,6 +80,138 @@ class _DetailPageState extends State<DetailPage>
                     ),
                   ),
                 ),
+                 AnimatedBuilder(
+                  animation: _controller,
+                  builder: (context, widget) => Transform.translate(
+                    transformHitTests: false,
+                    offset: Offset.lerp(
+                        Offset(0.0, 200.0), Offset.zero, _controller.value),
+                    child: widget,
+                  ),
+                  child: Padding(
+                    padding: EdgeInsets.all(10),
+                    child: Image.asset(widget.character.image2)
+                  ),
+                ),
+                                AnimatedBuilder(
+                  animation: _controller,
+                  builder: (context, widget) => Transform.translate(
+                    transformHitTests: false,
+                    offset: Offset.lerp(
+                        Offset(0.0, 200.0), Offset.zero, _controller.value),
+                    child: widget,
+                  ),
+                  child: Padding(
+                    padding: EdgeInsets.all(10),
+                    child: Text(
+                      widget.character.description2,
+                      style: TextStyle(
+                        fontSize: 18,
+                        color: Colors.white,
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
+                  ),
+                ),
+                 AnimatedBuilder(
+                  animation: _controller,
+                  builder: (context, widget) => Transform.translate(
+                    transformHitTests: false,
+                    offset: Offset.lerp(
+                        Offset(0.0, 200.0), Offset.zero, _controller.value),
+                    child: widget,
+                  ),
+                  child: Padding(
+                    padding: EdgeInsets.all(10),
+                    child: Image.asset(widget.character.image3)
+                  ),
+                ),
+                                AnimatedBuilder(
+                  animation: _controller,
+                  builder: (context, widget) => Transform.translate(
+                    transformHitTests: false,
+                    offset: Offset.lerp(
+                        Offset(0.0, 200.0), Offset.zero, _controller.value),
+                    child: widget,
+                  ),
+                  child: Padding(
+                    padding: EdgeInsets.all(10),
+                    child: Text(
+                      widget.character.description3,
+                      style: TextStyle(
+                        fontSize: 18,
+                        color: Colors.white,
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
+                  ),
+                ),
+                 AnimatedBuilder(
+                  animation: _controller,
+                  builder: (context, widget) => Transform.translate(
+                    transformHitTests: false,
+                    offset: Offset.lerp(
+                        Offset(0.0, 200.0), Offset.zero, _controller.value),
+                    child: widget,
+                  ),
+                  child: Padding(
+                    padding: EdgeInsets.all(10),
+                    child: Image.asset(widget.character.image4)
+                  ),
+                ),
+                AnimatedBuilder(
+                  animation: _controller,
+                  builder: (context, widget) => Transform.translate(
+                    transformHitTests: false,
+                    offset: Offset.lerp(
+                        Offset(0.0, 200.0), Offset.zero, _controller.value),
+                    child: widget,
+                  ),
+                  child: Padding(
+                    padding: EdgeInsets.all(10),
+                    child: Text(
+                      widget.character.description4,
+                      style: TextStyle(
+                        fontSize: 18,
+                        color: Colors.white,
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
+                  ),
+                ),
+                 AnimatedBuilder(
+                  animation: _controller,
+                  builder: (context, widget) => Transform.translate(
+                    transformHitTests: false,
+                    offset: Offset.lerp(
+                        Offset(0.0, 200.0), Offset.zero, _controller.value),
+                    child: widget,
+                  ),
+                  child: Padding(
+                    padding: EdgeInsets.all(10),
+                    child: Image.asset(widget.character.image5)
+                  ),
+                ),
+                                AnimatedBuilder(
+                  animation: _controller,
+                  builder: (context, widget) => Transform.translate(
+                    transformHitTests: false,
+                    offset: Offset.lerp(
+                        Offset(0.0, 200.0), Offset.zero, _controller.value),
+                    child: widget,
+                  ),
+                  child: Padding(
+                    padding: EdgeInsets.all(10),
+                    child: Text(
+                      widget.character.description5,
+                      style: TextStyle(
+                        fontSize: 18,
+                        color: Colors.white,
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
+                  ),
+                ),
               ],
             ),
           ),

@@ -3,6 +3,8 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:slide_puzzle/puzzlemain.dart';
 import 'package:slide_puzzle/src/list_details/list_page.dart';
+import 'package:slide_puzzle/src/timeline/timeline.dart';
+
 class Movie {
   final String path;
   final String title;
@@ -11,18 +13,19 @@ class Movie {
 }
 
 final movies = [
-  Movie(
-      path: 'asset/Neolitik.jpg', title: 'Puzzle', widget: PuzzleApp() ),
-  Movie(
+   Movie(
       path:
           'asset/Logam.jpg',
-      title: 'List page',
+      title: 'KENALI PRASEJARAH\n认识史前时代',
       widget: ListPage()
     ),
-  const Movie(
+  Movie(
+      path: 'asset/Neolitik.jpg', title: 'Puzzle', widget: PuzzleApp() ),
+ Movie(
       path:
           'asset/Neolitik.jpg',
-      title: 'Predator'),
+      title: 'Predator',
+      widget: TimelinePage()),
   const Movie(
     path:
         'asset/Neolitik.jpg',
@@ -76,9 +79,6 @@ class _MoviesConceptPageState extends State<MoviesConceptPage> {
     return Scaffold(
       body: Stack(
         children: [
-
-
-
           Positioned.fill(
             child: ValueListenableBuilder<double>(
                 valueListenable: _pageNotifier,
@@ -138,19 +138,20 @@ class _MoviesConceptPageState extends State<MoviesConceptPage> {
                     lerpDouble(0.0, 0.5, (index - _pageNotifier.value).abs());
                 if (opacity > 1.0) opacity = 1.0;
                 if (opacity < 0.0) opacity = 0.0;
-                var movie;
                 return Transform.translate(
                   offset: Offset(0.0, lerp * 50),
                   child: Opacity(
                     opacity: (1 - opacity),
+                    child: GestureDetector(
+                       onTap: () {if(index != 1) onButtonPressed(movies[index].widget); else runApp(movies[index].widget);},
                     child: Align(
-                      alignment: Alignment.bottomCenter,
+                      
+                      //alignment: Alignment.bottomCenter,
                       child: Card(
                         semanticContainer: true,
                         color: Colors.white,
                         borderOnForeground: true,
                         elevation: 4,
-                        
                         shape: RoundedRectangleBorder(
                           borderRadius: borderRadius,
                         ),
@@ -169,19 +170,26 @@ class _MoviesConceptPageState extends State<MoviesConceptPage> {
                                     fit: BoxFit.fill
                                   ),
                               ),
-                              ButtonBar(
-                            children: <Widget>[
-                              FlatButton(
-                                child: Text(movies[index].title),
-                                onPressed: () {onButtonPressed(movies[index].widget);},
-                              )
-                            ],
-                          ),
+                               Expanded(
+                                child: Padding(
+                                  padding: const EdgeInsets.all(15.0),
+                                  child: Text(
+                                    movies[index].title,
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.w700,
+                                      color: Colors.black,
+                                      fontSize: 24,
+                                    ),
+                                  ),
+                                ),
+                              ),
                           ],
                           ),
                         ),
                       ),
                     ),
+                  ),
                   ),
                 );
               }

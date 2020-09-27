@@ -51,7 +51,7 @@ class _ListPageState extends State<ListPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Dragon Ball"),
+        title: Text('Kenali prasejarah 认识史前时代'),
         backgroundColor: Colors.black54,
       ),
       body: PageView.builder(
