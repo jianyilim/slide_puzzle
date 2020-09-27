@@ -1,33 +1,222 @@
-// Copyright 2020, the Flutter project authors. Please see the AUTHORS file
-// for details. All rights reserved. Use of this source code is governed by a
-// BSD-style license that can be found in the LICENSE file.
+import 'dart:ui';
 
-import 'src/core/puzzle_animator.dart';
-import 'src/flutter.dart';
-import 'src/puzzle_home_state.dart';
-
-void main() => runApp(PuzzleApp());
-
-class PuzzleApp extends StatelessWidget {
-  final int rows, columns;
-
-  PuzzleApp({int columns = 4, int rows = 4})
-      : columns = columns ?? 4,
-        rows = rows ?? 4;
-
-  @override
-  Widget build(BuildContext context) => MaterialApp(
-        title: 'State of Sejarah',
-        home: _PuzzleHome(rows, columns),
-      );
+import 'package:flutter/material.dart';
+import 'package:slide_puzzle/puzzlemain.dart';
+import 'package:slide_puzzle/src/list_details/list_page.dart';
+class Movie {
+  final String path;
+  final String title;
+  final Widget widget;
+  const Movie({this.path, this.title,this.widget});
 }
 
-class _PuzzleHome extends StatefulWidget {
-  final int _rows, _columns;
+final movies = [
+  Movie(
+      path: 'asset/Neolitik.jpg', title: 'Puzzle', widget: PuzzleApp() ),
+  Movie(
+      path:
+          'asset/Logam.jpg',
+      title: 'List page',
+      widget: ListPage()
+    ),
+  const Movie(
+      path:
+          'asset/Neolitik.jpg',
+      title: 'Predator'),
+  const Movie(
+    path:
+        'asset/Neolitik.jpg',
+    title: 'Anabelle',
+  ),
+];
+void main() => runApp(MaterialApp(
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: MoviesConceptPage(),
+    ));
+class MoviesConceptPage extends StatefulWidget {
+  @override
+  _MoviesConceptPageState createState() => _MoviesConceptPageState();
+}
 
-  const _PuzzleHome(this._rows, this._columns);
+class _MoviesConceptPageState extends State<MoviesConceptPage> {
+  final pageController = PageController(viewportFraction: 0.7);
+  final ValueNotifier<double> _pageNotifier = ValueNotifier(0.0);
+
+  void _listener() {
+    _pageNotifier.value = pageController.page;
+    setState(() {});
+  }
+  void onButtonPressed(Widget page) {
+  Navigator.push(
+        context, MaterialPageRoute(builder: (BuildContext context) => page));
+  }
+  @override
+  void initState() {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      pageController.addListener(_listener);
+    });
+    super.initState();
+  }
 
   @override
-  PuzzleHomeState createState() =>
-      PuzzleHomeState(PuzzleAnimator(_columns, _rows));
+  void dispose() {
+    pageController.removeListener(_listener);
+    pageController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final borderRadius = BorderRadius.circular(30);
+    final size = MediaQuery.of(context).size;
+
+    return Scaffold(
+      body: Stack(
+        children: [
+
+
+
+          Positioned.fill(
+            child: ValueListenableBuilder<double>(
+                valueListenable: _pageNotifier,
+                builder: (context, value, child) {
+                  return Stack(
+                    children: movies.reversed
+                        .toList()
+                        .asMap()
+                        .entries
+                        .map(
+                          (entry) => Positioned.fill( 
+                            child: ClipRect(
+                              clipper: MyClipper(
+                                percentage: value,
+                                title: entry.value.title,
+                                index: entry.key,
+                              ),
+                              child: Image(
+                                    image: AssetImage(entry.value.path),
+                                    fit: BoxFit.cover
+                                  ),
+                            ),
+                          ),
+                        )
+                        .toList(),
+                  );
+                }),
+          ),
+          Positioned(
+            left: 0,
+            right: 0,
+            bottom: 0,
+            height: size.height / 3,
+            child: Container(
+              decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                colors: [
+                  Colors.white,
+                  Colors.white,
+                  Colors.white,
+                  Colors.white60,
+                  Colors.white24,
+                ],
+                begin: Alignment.bottomCenter,
+                end: Alignment.topCenter,
+              )),
+            ),
+          ),
+          PageView.builder(
+              itemCount: movies.length,
+              controller: pageController,
+              itemBuilder: (context, index) {
+                final lerp =
+                    lerpDouble(0, 1, (index - _pageNotifier.value).abs());
+
+                double opacity =
+                    lerpDouble(0.0, 0.5, (index - _pageNotifier.value).abs());
+                if (opacity > 1.0) opacity = 1.0;
+                if (opacity < 0.0) opacity = 0.0;
+                var movie;
+                return Transform.translate(
+                  offset: Offset(0.0, lerp * 50),
+                  child: Opacity(
+                    opacity: (1 - opacity),
+                    child: Align(
+                      alignment: Alignment.bottomCenter,
+                      child: Card(
+                        semanticContainer: true,
+                        color: Colors.white,
+                        borderOnForeground: true,
+                        elevation: 4,
+                        
+                        shape: RoundedRectangleBorder(
+                          borderRadius: borderRadius,
+                        ),
+                        clipBehavior: Clip.hardEdge,
+                        child: SizedBox(
+                          height: size.height / 1.5,
+                          width: size.width,
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            children: [
+                              Expanded(
+                                flex: 2,
+                                child: Image(
+                                    image: AssetImage(movies[index].path),
+                                    fit: BoxFit.fill
+                                  ),
+                              ),
+                              ButtonBar(
+                            children: <Widget>[
+                              FlatButton(
+                                child: Text(movies[index].title),
+                                onPressed: () {onButtonPressed(movies[index].widget);},
+                              )
+                            ],
+                          ),
+                          ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                );
+              }
+              ),
+        ],
+      ),
+    );
+  }
+}
+
+class MyClipper extends CustomClipper<Rect> {
+  final double percentage;
+  final String title;
+  final int index;
+
+  MyClipper({
+    this.percentage = 0.0,
+    this.title,
+    this.index,
+  });
+
+  @override
+  Rect getClip(Size size) {
+    int currentIndex = movies.length - 1 - index;
+    final realPercent = (currentIndex - percentage).abs();
+    if (currentIndex == percentage.truncate()) {
+      return Rect.fromLTWH(
+          0.0, 0.0, size.width * (1 - realPercent), size.height);
+    }
+    if (percentage.truncate() > currentIndex) {
+      return Rect.fromLTWH(0.0, 0.0, 0.0, size.height);
+    }
+    return Rect.fromLTWH(0.0, 0.0, size.width, size.height);
+  }
+
+  @override
+  bool shouldReclip(CustomClipper oldClipper) => true;
 }
