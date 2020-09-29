@@ -17,6 +17,7 @@ dev_dependencies:
   test: ^1.3.4
   timeline_list: ^0.0.5
   pdf: ^1.11.2
+  flutter_full_pdf_viewer: ^1.0.6
   printing:
   path_provider:
   open_file:
@@ -28,10 +29,6 @@ flutter:
     - asset/
     - images/
     - images/characters/
-    - images/balls/
-    - images/shoes/
-    - images/credit_cards/
-    - asset/audios/
 
   fonts:
   - family: Plaster

@@ -3,32 +3,24 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:slide_puzzle/puzzlemain.dart';
 import 'package:slide_puzzle/src/list_details/list_page.dart';
-import 'package:slide_puzzle/src/timeline/timeline.dart';
+import 'package:slide_puzzle/src/pdf.dart';
 
 class Movie {
   final String path;
   final String title;
   final Widget widget;
-  const Movie({this.path, this.title,this.widget});
+  const Movie({this.path, this.title, this.widget});
 }
 
 final movies = [
-   Movie(
-      path:
-          'asset/Logam.jpg',
-      title: 'KENALI PRASEJARAH\n认识史前时代',
-      widget: ListPage()
-    ),
   Movie(
-      path: 'asset/Neolitik.jpg', title: 'Puzzle', widget: PuzzleApp() ),
- Movie(
-      path:
-          'asset/Neolitik.jpg',
-      title: 'Predator',
-      widget: TimelinePage()),
+      path: 'asset/Logam.jpg',
+      title: 'KENALI PRASEJARAH\n认识史前时代',
+      widget: ListPage()),
+  Movie(path: 'asset/Neolitik.jpg', title: 'Puzzle', widget: PuzzleApp()),
+  Movie(path: 'asset/Neolitik.jpg', title: 'Predator', widget: MyApp()),
   const Movie(
-    path:
-        'asset/Neolitik.jpg',
+    path: 'asset/Neolitik.jpg',
     title: 'Anabelle',
   ),
 ];
@@ -39,6 +31,7 @@ void main() => runApp(MaterialApp(
       ),
       home: MoviesConceptPage(),
     ));
+
 class MoviesConceptPage extends StatefulWidget {
   @override
   _MoviesConceptPageState createState() => _MoviesConceptPageState();
@@ -52,10 +45,12 @@ class _MoviesConceptPageState extends State<MoviesConceptPage> {
     _pageNotifier.value = pageController.page;
     setState(() {});
   }
+
   void onButtonPressed(Widget page) {
-  Navigator.push(
+    Navigator.push(
         context, MaterialPageRoute(builder: (BuildContext context) => page));
   }
+
   @override
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -89,7 +84,7 @@ class _MoviesConceptPageState extends State<MoviesConceptPage> {
                         .asMap()
                         .entries
                         .map(
-                          (entry) => Positioned.fill( 
+                          (entry) => Positioned.fill(
                             child: ClipRect(
                               clipper: MyClipper(
                                 percentage: value,
@@ -97,9 +92,8 @@ class _MoviesConceptPageState extends State<MoviesConceptPage> {
                                 index: entry.key,
                               ),
                               child: Image(
-                                    image: AssetImage(entry.value.path),
-                                    fit: BoxFit.cover
-                                  ),
+                                  image: AssetImage(entry.value.path),
+                                  fit: BoxFit.cover),
                             ),
                           ),
                         )
@@ -143,57 +137,59 @@ class _MoviesConceptPageState extends State<MoviesConceptPage> {
                   child: Opacity(
                     opacity: (1 - opacity),
                     child: GestureDetector(
-                       onTap: () {if(index != 1) onButtonPressed(movies[index].widget); else runApp(movies[index].widget);},
-                    child: Align(
-                      
-                      //alignment: Alignment.bottomCenter,
-                      child: Card(
-                        semanticContainer: true,
-                        color: Colors.white,
-                        borderOnForeground: true,
-                        elevation: 4,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: borderRadius,
-                        ),
-                        clipBehavior: Clip.hardEdge,
-                        child: SizedBox(
-                          height: size.height / 1.5,
-                          width: size.width,
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            crossAxisAlignment: CrossAxisAlignment.stretch,
-                            children: [
-                              Expanded(
-                                flex: 2,
-                                child: Image(
-                                    image: AssetImage(movies[index].path),
-                                    fit: BoxFit.fill
-                                  ),
-                              ),
-                               Expanded(
-                                child: Padding(
-                                  padding: const EdgeInsets.all(15.0),
-                                  child: Text(
-                                    movies[index].title,
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.w700,
-                                      color: Colors.black,
-                                      fontSize: 24,
+                      onTap: () {
+                        if (index != 1)
+                          onButtonPressed(movies[index].widget);
+                        else
+                          runApp(movies[index].widget);
+                      },
+                      child: Align(
+                        //alignment: Alignment.bottomCenter,
+                        child: Card(
+                          semanticContainer: true,
+                          color: Colors.white,
+                          borderOnForeground: true,
+                          elevation: 4,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: borderRadius,
+                          ),
+                          clipBehavior: Clip.hardEdge,
+                          child: SizedBox(
+                            height: size.height / 1.5,
+                            width: size.width,
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              crossAxisAlignment: CrossAxisAlignment.stretch,
+                              children: [
+                                Expanded(
+                                  flex: 2,
+                                  child: Image(
+                                      image: AssetImage(movies[index].path),
+                                      fit: BoxFit.fill),
+                                ),
+                                Expanded(
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(15.0),
+                                    child: Text(
+                                      movies[index].title,
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.w700,
+                                        color: Colors.black,
+                                        fontSize: 24,
+                                      ),
                                     ),
                                   ),
                                 ),
-                              ),
-                          ],
+                              ],
+                            ),
                           ),
                         ),
                       ),
                     ),
                   ),
-                  ),
                 );
-              }
-              ),
+              }),
         ],
       ),
     );
