@@ -80,7 +80,7 @@ class _DetailPageState extends State<DetailPage>
                     ),
                   ),
                 ),
-                 AnimatedBuilder(
+                AnimatedBuilder(
                   animation: _controller,
                   builder: (context, widget) => Transform.translate(
                     transformHitTests: false,
@@ -89,11 +89,10 @@ class _DetailPageState extends State<DetailPage>
                     child: widget,
                   ),
                   child: Padding(
-                    padding: EdgeInsets.all(10),
-                    child: Image.asset(widget.character.image2)
-                  ),
+                      padding: EdgeInsets.all(10),
+                      child: Image.asset(widget.character.image2)),
                 ),
-                                AnimatedBuilder(
+                AnimatedBuilder(
                   animation: _controller,
                   builder: (context, widget) => Transform.translate(
                     transformHitTests: false,
@@ -113,7 +112,7 @@ class _DetailPageState extends State<DetailPage>
                     ),
                   ),
                 ),
-                 AnimatedBuilder(
+                AnimatedBuilder(
                   animation: _controller,
                   builder: (context, widget) => Transform.translate(
                     transformHitTests: false,
@@ -122,11 +121,10 @@ class _DetailPageState extends State<DetailPage>
                     child: widget,
                   ),
                   child: Padding(
-                    padding: EdgeInsets.all(10),
-                    child: Image.asset(widget.character.image3)
-                  ),
+                      padding: EdgeInsets.all(10),
+                      child: Image.asset(widget.character.image3)),
                 ),
-                                AnimatedBuilder(
+                AnimatedBuilder(
                   animation: _controller,
                   builder: (context, widget) => Transform.translate(
                     transformHitTests: false,
@@ -146,7 +144,7 @@ class _DetailPageState extends State<DetailPage>
                     ),
                   ),
                 ),
-                 AnimatedBuilder(
+                AnimatedBuilder(
                   animation: _controller,
                   builder: (context, widget) => Transform.translate(
                     transformHitTests: false,
@@ -155,9 +153,8 @@ class _DetailPageState extends State<DetailPage>
                     child: widget,
                   ),
                   child: Padding(
-                    padding: EdgeInsets.all(10),
-                    child: Image.asset(widget.character.image4)
-                  ),
+                      padding: EdgeInsets.all(10),
+                      child: Image.asset(widget.character.image4)),
                 ),
                 AnimatedBuilder(
                   animation: _controller,
@@ -179,7 +176,7 @@ class _DetailPageState extends State<DetailPage>
                     ),
                   ),
                 ),
-                 AnimatedBuilder(
+                AnimatedBuilder(
                   animation: _controller,
                   builder: (context, widget) => Transform.translate(
                     transformHitTests: false,
@@ -188,11 +185,10 @@ class _DetailPageState extends State<DetailPage>
                     child: widget,
                   ),
                   child: Padding(
-                    padding: EdgeInsets.all(10),
-                    child: Image.asset(widget.character.image5)
-                  ),
+                      padding: EdgeInsets.all(10),
+                      child: Image.asset(widget.character.image5)),
                 ),
-                                AnimatedBuilder(
+                AnimatedBuilder(
                   animation: _controller,
                   builder: (context, widget) => Transform.translate(
                     transformHitTests: false,
@@ -204,6 +200,38 @@ class _DetailPageState extends State<DetailPage>
                     padding: EdgeInsets.all(10),
                     child: Text(
                       widget.character.description5,
+                      style: TextStyle(
+                        fontSize: 18,
+                        color: Colors.white,
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
+                  ),
+                ),
+                AnimatedBuilder(
+                  animation: _controller,
+                  builder: (context, widget) => Transform.translate(
+                    transformHitTests: false,
+                    offset: Offset.lerp(
+                        Offset(0.0, 200.0), Offset.zero, _controller.value),
+                    child: widget,
+                  ),
+                  child: Padding(
+                      padding: EdgeInsets.all(10),
+                      child: Image.asset(widget.character.image6)),
+                ),
+                AnimatedBuilder(
+                  animation: _controller,
+                  builder: (context, widget) => Transform.translate(
+                    transformHitTests: false,
+                    offset: Offset.lerp(
+                        Offset(0.0, 200.0), Offset.zero, _controller.value),
+                    child: widget,
+                  ),
+                  child: Padding(
+                    padding: EdgeInsets.all(10),
+                    child: Text(
+                      widget.character.description6,
                       style: TextStyle(
                         fontSize: 18,
                         color: Colors.white,
