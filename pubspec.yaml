@@ -23,10 +23,14 @@ dev_dependencies:
   open_file:
   url_launcher:
   intl:
+  cupertino_icons: ^0.1.2
+  http: any
+  circle_wheel_scroll: ^0.0.1+1
 flutter:
   uses-material-design: true
   assets:
     - asset/
+    - asset/ICONN/
     - images/
     - images/characters/
 

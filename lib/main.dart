@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:slide_puzzle/puzzlemain.dart';
 import 'package:slide_puzzle/src/list_details/list_page.dart';
 import 'package:slide_puzzle/src/pdf.dart';
+import 'package:slide_puzzle/src/circular_list/circular_list_page.dart';
+import 'package:slide_puzzle/src/shrink_top_list/shrink_top_list_page.dart';
 
 class Movie {
   final String path;
@@ -14,15 +16,13 @@ class Movie {
 
 final movies = [
   Movie(
-      path: 'asset/Logam.jpg',
+      path: 'asset/menu1.jpg',
       title: 'KENALI PRASEJARAH\n认识史前时代',
       widget: ListPage()),
-  Movie(path: 'asset/Neolitik.jpg', title: 'Puzzle', widget: PuzzleApp()),
-  Movie(path: 'asset/Neolitik.jpg', title: 'Predator', widget: MyApp()),
-  const Movie(
-    path: 'asset/Neolitik.jpg',
-    title: 'Anabelle',
-  ),
+  Movie(path: 'asset/menu2.jpg', title: 'Puzzle', widget: PuzzleApp()),
+  Movie(path: 'asset/menu3.jpg', title: 'Predator', widget: MyApp()),
+  Movie(
+      path: 'asset/menu4.jpg', title: 'Anabelle', widget: ShrinkTopListPage()),
 ];
 void main() => runApp(MaterialApp(
       debugShowCheckedModeBanner: false,
@@ -136,12 +136,12 @@ class _MoviesConceptPageState extends State<MoviesConceptPage> {
                   offset: Offset(0.0, lerp * 50),
                   child: Opacity(
                     opacity: (1 - opacity),
-                    child: GestureDetector(
+                    child: InkWell(
                       onTap: () {
                         if (index != 1)
                           onButtonPressed(movies[index].widget);
                         else
-                          runApp(movies[index].widget);
+                          onButtonPressed(movies[index].widget);
                       },
                       child: Align(
                         //alignment: Alignment.bottomCenter,
