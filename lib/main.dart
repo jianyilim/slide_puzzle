@@ -4,8 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:slide_puzzle/puzzlemain.dart';
 import 'package:slide_puzzle/src/list_details/list_page.dart';
 import 'package:slide_puzzle/src/pdf.dart';
-import 'package:slide_puzzle/src/circular_list/circular_list_page.dart';
-import 'package:slide_puzzle/src/puzzle_home_state.dart';
 import 'package:slide_puzzle/src/shrink_top_list/shrink_top_list_page.dart';
 import 'package:slide_puzzle/dndmain.dart';
 
@@ -19,13 +17,12 @@ class Movie {
 final movies = [
   Movie(
       path: 'asset/menu1.jpg',
-      title: 'KENALI PRASEJARAH\n认识史前时代',
+      title: 'Kenali Prasejarah\n认识史前时代',
       widget: ListPage()),
-  Movie(path: 'asset/menu2.jpg', title: 'Puzzle', widget: ShrinkTopListPage()),
-  Movie(path: 'asset/menu3.jpg', title: 'Predator', widget: MyApp()),
-  Movie(
-      path: 'asset/menu4.jpg', title: 'Anabelle', widget: PuzzleApp()),
-  Movie(path: 'asset/menu5.jpg', title: 'Anabelle', widget: MyDnDApp()),
+  Movie(path: 'asset/menu2.jpg', title: 'Books', widget: ShrinkTopListPage()),
+  Movie(path: 'asset/menu3.jpg', title: 'Exercise', widget: MyApp()),
+  Movie(path: 'asset/menu4.jpg', title: 'Puzzle', widget: PuzzleApp()),
+  Movie(path: 'asset/menu5.jpg', title: 'Mini game', widget: MyDnDApp()),
 ];
 void main() => runApp(MaterialApp(
       debugShowCheckedModeBanner: false,

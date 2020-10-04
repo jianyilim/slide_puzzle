@@ -190,10 +190,18 @@ final characters = <Character>[
     filename: "面条的年龄_兼说中国史前时代的面食_王仁湘.pdf",
   ),
     Character(
-    title: "人类简史从动物到上帝图文精编版开放历史系列",
-    path: "asset/人类简史从动物到上帝图文精编版开放历史系列.pdf",
-    avatar: "asset/ICONN/12.png",
-    color: 0xFF592E83,
-    filename: "人类简史从动物到上帝图文精编版开放历史系列.pdf",
+    title: "How to Skin a Bear",
+    path: "asset/How to Skin a Bear.pdf",
+    avatar: "asset/ICONN/14.png",
+    color: 0xFF8B9474,
+    filename: "How to Skin a Bear.pdf",
   ),
+   Character(
+    title: "古妮卡的故事",
+    path: "asset/monica.pdf",
+    avatar: "asset/ICONN/10.png",
+    color: 0xFF9AC2C9,
+    filename: "monica.pdf",
+  ),
+  
 ];
