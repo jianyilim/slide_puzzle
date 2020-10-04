@@ -14,10 +14,9 @@ class PuzzleApp extends StatelessWidget {
         rows = rows ?? 4;
 
   @override
-  Widget build(BuildContext context) => MaterialApp(
-        title: 'State of Sejarah',
-        home: _PuzzleHome(rows, columns),
-      );
+  Widget build(BuildContext context) {
+    return _PuzzleHome(rows, columns);
+  }
 }
 
 class _PuzzleHome extends StatefulWidget {
@@ -28,10 +27,39 @@ class _PuzzleHome extends StatefulWidget {
   @override
   PuzzleHomeState createState() =>
       PuzzleHomeState(PuzzleAnimator(_columns, _rows));
- 
+
   @override
   Widget build(BuildContext context) {
+    return Scaffold(
+      body: Stack(
+        children: [
+          Positioned(
+            top: 30,
+            left: 10,
+            child: DecoratedBox(
+              decoration: BoxDecoration(
+                boxShadow: [
+                  BoxShadow(
+                      color: Colors.black38,
+                      offset: Offset(5, 5),
+                      blurRadius: 20,
+                      spreadRadius: 5),
+                ],
+              ),
+              child: BackButton(
+                color: Colors.white,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
 
+class _PuzzleHomeState extends State<_PuzzleHome> {
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       body: Stack(
         children: [

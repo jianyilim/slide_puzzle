@@ -5,7 +5,9 @@ import 'package:slide_puzzle/puzzlemain.dart';
 import 'package:slide_puzzle/src/list_details/list_page.dart';
 import 'package:slide_puzzle/src/pdf.dart';
 import 'package:slide_puzzle/src/circular_list/circular_list_page.dart';
+import 'package:slide_puzzle/src/puzzle_home_state.dart';
 import 'package:slide_puzzle/src/shrink_top_list/shrink_top_list_page.dart';
+import 'package:slide_puzzle/dndmain.dart';
 
 class Movie {
   final String path;
@@ -19,10 +21,11 @@ final movies = [
       path: 'asset/menu1.jpg',
       title: 'KENALI PRASEJARAH\n认识史前时代',
       widget: ListPage()),
-  Movie(path: 'asset/menu2.jpg', title: 'Puzzle', widget: PuzzleApp()),
+  Movie(path: 'asset/menu2.jpg', title: 'Puzzle', widget: ShrinkTopListPage()),
   Movie(path: 'asset/menu3.jpg', title: 'Predator', widget: MyApp()),
   Movie(
-      path: 'asset/menu4.jpg', title: 'Anabelle', widget: ShrinkTopListPage()),
+      path: 'asset/menu4.jpg', title: 'Anabelle', widget: PuzzleApp()),
+  Movie(path: 'asset/menu5.jpg', title: 'Anabelle', widget: MyDnDApp()),
 ];
 void main() => runApp(MaterialApp(
       debugShowCheckedModeBanner: false,
@@ -138,10 +141,10 @@ class _MoviesConceptPageState extends State<MoviesConceptPage> {
                     opacity: (1 - opacity),
                     child: InkWell(
                       onTap: () {
-                        if (index != 1)
+                        if (index != 3)
                           onButtonPressed(movies[index].widget);
                         else
-                          onButtonPressed(movies[index].widget);
+                          runApp(movies[index].widget);
                       },
                       child: Align(
                         //alignment: Alignment.bottomCenter,

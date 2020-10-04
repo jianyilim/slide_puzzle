@@ -189,4 +189,11 @@ final characters = <Character>[
     color: 0xFF592E83,
     filename: "面条的年龄_兼说中国史前时代的面食_王仁湘.pdf",
   ),
+    Character(
+    title: "人类简史从动物到上帝图文精编版开放历史系列",
+    path: "asset/人类简史从动物到上帝图文精编版开放历史系列.pdf",
+    avatar: "asset/ICONN/12.png",
+    color: 0xFF592E83,
+    filename: "人类简史从动物到上帝图文精编版开放历史系列.pdf",
+  ),
 ];
