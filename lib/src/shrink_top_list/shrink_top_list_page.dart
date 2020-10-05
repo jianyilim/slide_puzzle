@@ -34,10 +34,10 @@ class _ShrinkTopListPageState extends State<ShrinkTopListPage> {
   Future<String> createFileOfPdfUrl(Character character) async {
     var bytes;
     String filename = character.filename;
-    String dir = (await getApplicationDocumentsDirectory()).path;
+    String dir = gdir;
     File file = new File('$dir/$filename');
     var bytes2 = await rootBundle.load(character.path);
-    writeToFile(bytes2, '$dir/$filename');
+    await writeToFile(bytes2, '$dir/$filename');
     character.finalPath = file.path;
     return file.path;
   }
@@ -47,6 +47,16 @@ class _ShrinkTopListPageState extends State<ShrinkTopListPage> {
     final buffer = data.buffer;
     return new File(path).writeAsBytes(
         buffer.asUint8List(data.offsetInBytes, data.lengthInBytes));
+  }
+
+  void onButtonPressedPDF(Character character) {
+    createFileOfPdfUrl(character).then((f) {
+        character.finalPath = f;
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (BuildContext context) => PDFScreen(character)));
+    });
   }
 
   _asyncMethod() async {
@@ -64,13 +74,13 @@ class _ShrinkTopListPageState extends State<ShrinkTopListPage> {
     scrollController.addListener(onListen);
     super.initState();
     _asyncMethod();
-    for (var i = 0; i < characters.length; i++) {
+    /*for (var i = 0; i < characters.length; i++) {
       createFileOfPdfUrl(characters[i]).then((f) {
         setState(() {
           characters[i].finalPath = f;
         });
       });
-    }
+    }*/
   }
 
   @override
@@ -115,11 +125,7 @@ class _ShrinkTopListPageState extends State<ShrinkTopListPage> {
                         transform: Matrix4.identity()..scale(scale, 1.0),
                         child: InkWell(
                           onTap: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (BuildContext context) =>
-                                        PDFScreen(characters[index])));
+                            onButtonPressedPDF(characters[index]);
                           },
                           child: Card(
                             shape: RoundedRectangleBorder(

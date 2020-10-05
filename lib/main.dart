@@ -24,6 +24,7 @@ final movies = [
   Movie(path: 'asset/menu4.jpg', title: 'Puzzle', widget: PuzzleApp()),
   Movie(path: 'asset/menu5.jpg', title: 'Mini game', widget: MyDnDApp()),
 ];
+
 void main() => runApp(MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
