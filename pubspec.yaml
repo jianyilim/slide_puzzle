@@ -23,6 +23,7 @@ dependencies:
   intl:
   http: any
   circle_wheel_scroll: ^0.0.1+1
+  flutter_share: ^1.0.2+1
 
 dev_dependencies:
   flutter_test:
@@ -34,6 +35,7 @@ flutter:
   assets:
     - asset/
     - asset/ICONN/
+    - asset/DIY/
     - images/
     - images/characters/
     - 'success.mp3'

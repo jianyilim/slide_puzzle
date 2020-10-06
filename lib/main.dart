@@ -5,6 +5,7 @@ import 'package:slide_puzzle/puzzlemain.dart';
 import 'package:slide_puzzle/src/list_details/list_page.dart';
 import 'package:slide_puzzle/src/pdf.dart';
 import 'package:slide_puzzle/src/shrink_top_list/shrink_top_list_page.dart';
+import 'package:slide_puzzle/src/shrink_top_list-diy/shrink_top_list_page.dart';
 import 'package:slide_puzzle/dndmain.dart';
 
 class Movie {
@@ -20,7 +21,7 @@ final movies = [
       title: 'Kenali Prasejarah\n认识史前时代',
       widget: ListPage()),
   Movie(path: 'asset/menu2.jpg', title: 'Books', widget: ShrinkTopListPage()),
-  Movie(path: 'asset/menu3.jpg', title: 'Exercise', widget: MyApp()),
+  Movie(path: 'asset/menu3.jpg', title: 'D.I.Y', widget: ShrinkTopListPage2()),
   Movie(path: 'asset/menu4.jpg', title: 'Puzzle', widget: PuzzleApp()),
   Movie(path: 'asset/menu5.jpg', title: 'Mini game', widget: MyDnDApp()),
 ];
