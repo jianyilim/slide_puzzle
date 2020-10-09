@@ -64,9 +64,12 @@ class ColorGameState extends State<ColorGame> {
               crossAxisAlignment: CrossAxisAlignment.end,
               children: choices.keys.map((emoji) {
                 return Draggable<String>(
-                  data: emoji,
-                  child: Emoji(emoji: score[emoji] == true ? '✅' : emoji),
-                  feedback: Emoji(emoji: emoji),
+                  data: emoji as String,
+                  child: Emoji(
+                      emoji: score[emoji as String] == true
+                          ? '✅'
+                          : emoji as String),
+                  feedback: Emoji(emoji: emoji as String),
                   childWhenDragging: Emoji(emoji: '🌱'),
                 );
               }).toList()),
@@ -94,13 +97,14 @@ class ColorGameState extends State<ColorGame> {
             width: 200,
           );
         } else {
-          return Container(color: choices[emoji], height: 80, width: 200);
+          return Container(
+              color: choices[emoji] as Color, height: 80, width: 200);
         }
       },
       onWillAccept: (data) => data == emoji,
       onAccept: (data) {
         setState(() {
-          score[emoji] = true;
+          score[emoji as String] = true;
           plyr.play('success.mp3');
         });
       },

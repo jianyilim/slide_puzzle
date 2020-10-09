@@ -7,6 +7,7 @@ import 'package:flutter_full_pdf_viewer/full_pdf_viewer_scaffold.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_share/flutter_share.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 const itemSize = 150.0;
 
@@ -18,7 +19,7 @@ class PDFScreen2 extends StatelessWidget {
     await FlutterShare.shareFile(
       title: character.title,
       text: character.title,
-      filePath: character.path,
+      filePath: character.finalPath,
     );
   }
 
@@ -30,7 +31,9 @@ class PDFScreen2 extends StatelessWidget {
           actions: <Widget>[
             IconButton(
               icon: Icon(Icons.share),
-              onPressed: () { shareFile(character);},
+              onPressed: () {
+                shareFile(character);
+              },
             ),
           ],
         ),
@@ -46,6 +49,9 @@ class ShrinkTopListPage2 extends StatefulWidget {
 class _ShrinkTopListPageState2 extends State<ShrinkTopListPage2> {
   final scrollController = ScrollController();
   Future<String> createFileOfPdfUrl(Character character) async {
+    final PermissionHandler _permissionHandler = PermissionHandler();
+    var result =
+        await _permissionHandler.requestPermissions([PermissionGroup.storage]);
     var bytes;
     String filename = character.filename;
     String dir = gdir;
@@ -74,7 +80,7 @@ class _ShrinkTopListPageState2 extends State<ShrinkTopListPage2> {
   }
 
   _asyncMethod() async {
-    gdir = (await getApplicationDocumentsDirectory()).path;
+    gdir = (await getExternalStorageDirectory()).path;
   }
 
   void onListen() {
