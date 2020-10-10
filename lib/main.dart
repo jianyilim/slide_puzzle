@@ -9,6 +9,7 @@ import 'package:slide_puzzle/src/list_details/list_page.dart';
 import 'package:slide_puzzle/src/pdf.dart';
 import 'package:slide_puzzle/src/shrink_top_list/shrink_top_list_page.dart';
 import 'package:slide_puzzle/src/shrink_top_list-diy/shrink_top_list_page.dart';
+import 'package:slide_puzzle/src/shrink_top_list-color/shrink_top_list_page.dart';
 import 'package:slide_puzzle/dndmain.dart';
 import 'package:flutter_full_pdf_viewer/full_pdf_viewer_scaffold.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -37,6 +38,10 @@ final movies = [
       path: 'asset/menu3.jpg',
       title: '亲手制作\nMari Cuba',
       widget: ShrinkTopListPage2()),
+  Movie(
+      path: 'asset/menu6.jpg',
+      title: '为历史增添色彩\nWarna-warnikan Sejarah',
+      widget: ShrinkTopListPage3()),
   Movie(path: 'asset/menu4.jpg', title: '拼拼看\nPuzzle', widget: PuzzleApp()),
   Movie(
       path: 'asset/menu5.jpg',
@@ -202,7 +207,7 @@ class _MoviesConceptPageState extends State<MoviesConceptPage> {
                       onTap: () {
                         if (index == 0)
                           onButtonPressedPDF();
-                        else if (index == 4)
+                        else if (index == 5)
                           runApp(movies[index].widget);
                         else
                           onButtonPressed(movies[index].widget);

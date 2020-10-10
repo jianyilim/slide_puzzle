@@ -60,7 +60,14 @@ final characters = <Character>[
     title: "动物面具\nMask Haiwan",
     path: "asset/DIY/MASK.pdf",
     avatar: "asset/ICONN/d6.png",
-    color: 0xFFDBEFBC,
+    color: 0xFFAA4586,
     filename: "MaSK.pdf",
+  ),
+  Character(
+    title: "史前时代面具\nMask Zaman Prasejarah ",
+    path: "asset/DIY/Mask2.pdf",
+    avatar: "asset/ICONN/d7.png",
+    color: 0xFFE56399,
+    filename: "MaSK2.pdf",
   ),
 ];
