@@ -35,9 +35,11 @@ flutter:
     - asset/
     - asset/ICONN/
     - asset/DIY/
+    - asset/Colouring book/
     - images/
     - images/characters/
     - 'success.mp3'
+    - 'bgm.mp3'
 
   fonts:
   - family: Plaster
