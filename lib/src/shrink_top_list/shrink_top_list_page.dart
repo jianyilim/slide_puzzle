@@ -93,7 +93,7 @@ class _ShrinkTopListPageState extends State<ShrinkTopListPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Books'),
+        title: Text('历史科普书\nBuku Sains Sejarah'),
       ),
       body: Padding(
         padding: const EdgeInsets.only(left: 15.0, right: 15.0, top: 15.0),

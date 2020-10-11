@@ -1,15 +1,19 @@
 import 'dart:io';
 import 'dart:ui';
 import 'package:audioplayers/audio_cache.dart';
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:slide_puzzle/puzzlemain.dart';
+import 'package:slide_puzzle/web copy.dart';
 import 'package:slide_puzzle/src/list_details/list_page.dart';
 import 'package:slide_puzzle/src/pdf.dart';
 import 'package:slide_puzzle/src/shrink_top_list/shrink_top_list_page.dart';
 import 'package:slide_puzzle/src/shrink_top_list-diy/shrink_top_list_page.dart';
 import 'package:slide_puzzle/src/shrink_top_list-color/shrink_top_list_page.dart';
+import 'package:slide_puzzle/src/shrink_top_list-video/shrink_top_list_page.dart';
+import 'package:slide_puzzle/src/neon_button/neon_button_main.dart';
 import 'package:slide_puzzle/dndmain.dart';
 import 'package:flutter_full_pdf_viewer/full_pdf_viewer_scaffold.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -40,9 +44,14 @@ final movies = [
       widget: ShrinkTopListPage2()),
   Movie(
       path: 'asset/menu6.jpg',
-      title: '为历史增添色彩\nWarna-warnikan Sejarah',
+      title: '为历史增添色彩\nWarna-warnikan Prasejarah',
       widget: ShrinkTopListPage3()),
+  Movie(
+      path: 'asset/menu8.jpg',
+      title: '历史剧场\nCinema Prasejarah',
+      widget: ShrinkTopListPage4()),
   Movie(path: 'asset/menu4.jpg', title: '拼拼看\nPuzzle', widget: PuzzleApp()),
+  Movie(path: 'asset/menu7.jpg', title: '考考你\nKuiz', widget: NeonButonMain()),
   Movie(
       path: 'asset/menu5.jpg',
       title: '迷你游戏\nPermainan Mini',
@@ -69,7 +78,7 @@ class PDFScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return PDFViewerScaffold(
         appBar: AppBar(
-          title: Text('Murid boleh'),
+          title: Text('学习目标'),
           actions: <Widget>[],
         ),
         path: path1);
@@ -113,17 +122,23 @@ class _MoviesConceptPageState extends State<MoviesConceptPage> {
   }
 
   void onButtonPressed(Widget page) {
+    audioplayer.stop();
     Navigator.push(
         context, MaterialPageRoute(builder: (BuildContext context) => page));
   }
 
+  AudioPlayer audioplayer;
   @override
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       pageController.addListener(_listener);
     });
     super.initState();
-    plyr.loop('bgm.mp3');
+    playAudio();
+  }
+
+  playAudio() async {
+    audioplayer = await plyr.loop('bgm.mp3');
   }
 
   @override
@@ -207,7 +222,7 @@ class _MoviesConceptPageState extends State<MoviesConceptPage> {
                       onTap: () {
                         if (index == 0)
                           onButtonPressedPDF();
-                        else if (index == 5)
+                        else if (index == 6)
                           runApp(movies[index].widget);
                         else
                           onButtonPressed(movies[index].widget);

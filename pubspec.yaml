@@ -1,6 +1,6 @@
 name: slide_puzzle
 
-version: 1.0.0
+version: 1.0.4
 
 environment:
   sdk: ">=2.1.0 <3.0.0"
@@ -23,6 +23,7 @@ dependencies:
   circle_wheel_scroll: ^0.0.1+1
   flutter_share: ^1.0.2+1
   permission_handler: '^4.4.0+hotfix.2' 
+  webview_flutter: 
 
 dev_dependencies:
   flutter_test:

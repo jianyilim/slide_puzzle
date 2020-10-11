@@ -1,106 +1,33 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
-import 'package:slide_puzzle/src/shrink_top_list-color/character.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter_full_pdf_viewer/full_pdf_viewer_scaffold.dart';
-import 'package:path_provider/path_provider.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_share/flutter_share.dart';
-import 'package:permission_handler/permission_handler.dart';
+import 'package:slide_puzzle/src/shrink_top_list-video/character.dart';
+import 'package:slide_puzzle/web.dart';
 
 const itemSize = 150.0;
 
-class PDFScreen3 extends StatelessWidget {
-  Character character;
-  PDFScreen3(this.character);
-
-  Future<void> shareFile(Character character) async {
-    await FlutterShare.shareFile(
-      title: character.filename,
-      text: character.title,
-      filePath: character.finalPath,
-    );
-  }
-
+class ShrinkTopListPage4 extends StatefulWidget {
   @override
-  Widget build(BuildContext context) {
-    return PDFViewerScaffold(
-        appBar: AppBar(
-          title: Text(character.title),
-          actions: <Widget>[
-            IconButton(
-              icon: Icon(Icons.share),
-              onPressed: () {
-                shareFile(character);
-              },
-            ),
-          ],
-        ),
-        path: character.finalPath);
-  }
+  _ShrinkTopListPageState4 createState() => _ShrinkTopListPageState4();
 }
 
-class ShrinkTopListPage3 extends StatefulWidget {
-  @override
-  _ShrinkTopListPageState3 createState() => _ShrinkTopListPageState3();
-}
-
-class _ShrinkTopListPageState3 extends State<ShrinkTopListPage3> {
+class _ShrinkTopListPageState4 extends State<ShrinkTopListPage4> {
   final scrollController = ScrollController();
-  Future<String> createFileOfPdfUrl(Character character) async {
-    final PermissionHandler _permissionHandler = PermissionHandler();
-    var result =
-        await _permissionHandler.requestPermissions([PermissionGroup.storage]);
-    var bytes;
-    String filename = character.filename;
-    String dir = gdir;
-    File file = new File('$dir/$filename');
-    var bytes2 = await rootBundle.load(character.path);
-    await writeToFile(bytes2, '$dir/$filename');
-    character.finalPath = file.path;
-    return file.path;
-  }
 
-  //write to app path
-  Future<void> writeToFile(ByteData data, String path) {
-    final buffer = data.buffer;
-    return new File(path).writeAsBytes(
-        buffer.asUint8List(data.offsetInBytes, data.lengthInBytes));
-  }
-
-  void onButtonPressedPDF(Character character) {
-    createFileOfPdfUrl(character).then((f) {
-      character.finalPath = f;
-      Navigator.push(
-          context,
-          MaterialPageRoute(
-              builder: (BuildContext context) => PDFScreen3(character)));
-    });
-  }
-
-  _asyncMethod() async {
-    gdir = (await getExternalStorageDirectory()).path;
+  void onButtonPressed(Character character) {
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (BuildContext context) => MyWebApp(character.path)));
   }
 
   void onListen() {
     setState(() {});
   }
 
-  String gdir = '';
   @override
   void initState() {
     characters.addAll(List.from(characters));
     scrollController.addListener(onListen);
     super.initState();
-    _asyncMethod();
-    /*for (var i = 0; i < characters.length; i++) {
-      createFileOfPdfUrl(characters[i]).then((f) {
-        setState(() {
-          characters[i].finalPath = f;
-        });
-      });
-    }*/
   }
 
   @override
@@ -113,7 +40,7 @@ class _ShrinkTopListPageState3 extends State<ShrinkTopListPage3> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('为历史增添色彩'),
+        title: Text('历史剧场\nCinema Prasejarah'),
       ),
       body: Padding(
         padding: const EdgeInsets.only(left: 15.0, right: 15.0, top: 15.0),
@@ -145,7 +72,7 @@ class _ShrinkTopListPageState3 extends State<ShrinkTopListPage3> {
                         transform: Matrix4.identity()..scale(scale, 1.0),
                         child: InkWell(
                           onTap: () {
-                            onButtonPressedPDF(characters[index]);
+                            onButtonPressed(characters[index]);
                           },
                           child: Card(
                             shape: RoundedRectangleBorder(

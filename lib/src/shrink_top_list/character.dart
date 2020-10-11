@@ -78,13 +78,6 @@ final characters = <Character>[
     filename: "史前时代_向动物世界说再见.pdf",
   ),
   Character(
-    title: "声音之源",
-    path: "asset/声音之源_超然.pdf",
-    avatar: "asset/ICONN/9.png",
-    color: 0xFF364156,
-    filename: "声音之源_超然.pdf",
-  ),
-  Character(
     title: "奇妙的巨石镇",
     path: "asset/奇妙的_巨石镇_罗文翔.pdf",
     avatar: "asset/ICONN/10.png",
@@ -189,19 +182,18 @@ final characters = <Character>[
     color: 0xFF592E83,
     filename: "面条的年龄_兼说中国史前时代的面食_王仁湘.pdf",
   ),
-    Character(
+  Character(
     title: "How to Skin a Bear",
     path: "asset/How to Skin a Bear.pdf",
     avatar: "asset/ICONN/14.png",
     color: 0xFF8B9474,
     filename: "How to Skin a Bear.pdf",
   ),
-   Character(
+  Character(
     title: "古妮卡的故事",
     path: "asset/monica.pdf",
     avatar: "asset/ICONN/10.png",
     color: 0xFF9AC2C9,
     filename: "monica.pdf",
   ),
-  
 ];
